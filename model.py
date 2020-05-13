@@ -3,6 +3,8 @@ import random
 STEVILO_DOVOLJENIH_NAPAK = 9
 PRAVILNA_CRKA = '+'
 PONOVLJENA_CRKA = 'o'
+VEC_KOT_CRKA = '>'
+NI_CRKA = '*'
 NAPACNA_CRKA = '-'
 ZMAGA = 'W'
 PORAZ = 'X'
@@ -45,6 +47,10 @@ class Igra:
         return ' '.join(self.napacne_crke())
     
     def ugibaj(self, ugib):
+        if not ugib.isalpha():
+            return NI_CRKA
+        if len(ugib) > 1:
+            return VEC_KOT_CRKA
         crka = ugib.upper()
         if crka in self.crke:
             return PONOVLJENA_CRKA

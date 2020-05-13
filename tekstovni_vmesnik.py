@@ -17,7 +17,8 @@ def izpis_igre(igra):
 def izpis_zmage(igra):
     tekst = (
         'Wipiiiii, zmaga! Geslo je bilo: {geslo}\n\n'
-        'Potreboval si {n} poskusov.'
+        'Potreboval si {n} poskusov.\n\n'
+        'Želiš igrati še enkrat?'
     ).format(
         geslo = igra.pravilni_del_gesla(),
         n = igra.stevilo_napak
@@ -26,14 +27,25 @@ def izpis_zmage(igra):
 
 def izpis_poraza(igra):
     tekst = (
-        'Boooo Poraz! Geslo ke bilo: {geslo}\n\n'
+        'Boooo, Poraz! Geslo je bilo: {geslo}\n\n'
+        'Želiš igrati še enkrat?'
     ).format(
-        geslo = igra.pravilni_del_gesla()
+        geslo = igra.geslo
     )
     return tekst
 
+def izpis_napake1():
+    return '######## Ena črka naenkrat prosim ########'
+
+def izpis_napake2():
+    return '######## Dovoljene so samo črke ########'
+
+
 def zahtevaj_vnos():
     return input('Črka = ')
+
+def nova_igra_vnos():
+    return input('Pritisni 1 za novo igro: ')
 
 def pozeni_vmesnik():
 
@@ -41,13 +53,20 @@ def pozeni_vmesnik():
     while True:
         print(izpis_igre(igra))
         poskus = zahtevaj_vnos()
-        igra.ugibaj(poskus)
-        if igra.zmaga():
+        rezultat_ugiba = igra.ugibaj(poskus)
+
+        if rezultat_ugiba == model.VEC_KOT_CRKA:
+            print(izpis_napake1())
+        if rezultat_ugiba == model.NI_CRKA:
+            print(izpis_napake2())
+        if rezultat_ugiba == model.ZMAGA:
             print(izpis_zmage(igra))
             break
-        elif igra.poraz():
+        elif rezultat_ugiba == model.PORAZ:
             print(izpis_poraza(igra))
             break
-    return
-pozeni_vmesnik()
-        
+    if nova_igra_vnos() == 1:
+        pozeni_vmesnik()
+    else:
+        return
+pozeni_vmesnik()        
