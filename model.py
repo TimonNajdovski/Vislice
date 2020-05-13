@@ -11,10 +11,10 @@ PORAZ = 'X'
 class Igra:
 
     def __init__(self, geslo, crke = None):
+        self.geslo = geslo
         if crke is None:
-            crke = []
+            self.crke = []
         else:
-            self.geslo = geslo
             self.crke = crke
     
     def napacne_crke(self):
