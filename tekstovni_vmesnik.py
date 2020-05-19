@@ -21,7 +21,7 @@ def izpis_zmage(igra):
         'Želiš igrati še enkrat?'
     ).format(
         geslo = igra.pravilni_del_gesla(),
-        n = igra.stevilo_napak
+        n = igra.stevilo_napak()
     )
     return tekst
 
@@ -66,7 +66,8 @@ def pozeni_vmesnik():
             print(izpis_poraza(igra))
             break
     if nova_igra_vnos() == 1:
-        pozeni_vmesnik()
+       os.exec*()
+       return
     else:
         return
 pozeni_vmesnik()        
