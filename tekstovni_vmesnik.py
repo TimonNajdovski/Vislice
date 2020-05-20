@@ -65,9 +65,4 @@ def pozeni_vmesnik():
         elif rezultat_ugiba == model.PORAZ:
             print(izpis_poraza(igra))
             break
-    if nova_igra_vnos() == 1:
-       os.exec*()
-       return
-    else:
-        return
 pozeni_vmesnik()        
